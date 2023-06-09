@@ -1,0 +1,78 @@
+#include <bits/stdc++.h>
+
+
+void swap(vector<int> &arr1,vector<int> &arr2,int l,int r)
+{
+	int temp;
+	temp=arr1[l];
+	arr1[l]=arr2[r];
+	arr2[r]=temp;
+	return;
+}
+
+vector<int> ninjaAndSortedArrays(vector<int>& arr1, vector<int>& arr2, int m, int n) {
+	// NO EXTRA SPACE
+    int l=m-1,r=0;
+	while(l>=0&&r<n)
+	{
+		if(arr1[l]<arr2[r])
+		{
+			break;
+		}
+		else
+		{
+			swap(arr1,arr2,l,r);
+			l--;
+			r++;
+		}
+	}
+
+    int i,j=0;
+	sort(arr1.begin(),arr1.begin()+m);
+	sort(arr2.begin(),arr2.end());
+	j=0;
+	for(i=m;i<m+n;i++)
+	{
+		arr1[i]=arr2[j];
+		j++;
+	}
+
+	return arr1;
+
+	/*int n2=m;
+	int i=0,j=0;
+	vector<int> ans;
+	while(i<n2&&j<n)
+	{
+		if(arr1[i]<arr2[j])
+		{
+			ans.push_back(arr1[i]);
+			i++;
+		}
+		else
+		{
+			ans.push_back(arr2[j]);
+			j++;
+		}
+	}
+
+	if(i<n2)
+	{
+		while(i<n2)
+		{
+			ans.push_back(arr1[i]);
+			i++;
+		}
+	}
+	else
+	{
+		while(j<n)
+		{
+			ans.push_back(arr2[j]);
+			j++;
+		}
+	}
+
+	return ans;
+    */
+}
