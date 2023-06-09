@@ -1,0 +1,59 @@
+void swap(vector<int> &permutation,int i,int ind)
+{
+    int temp;
+    temp=permutation[i];
+    permutation[i]=permutation[ind];
+    permutation[ind]=temp;
+    return;
+}
+
+void reverse(vector<int> &permutation,int l,int r)
+{
+    while(l<=r)
+    {
+        swap(permutation,l,r);
+        l++;
+        r--;
+    }
+}
+
+vector<int> nextPermutation(vector<int> &permutation, int n)
+{
+    //  NEXT PERMUTATION IMPLEMENTATION
+
+    int i,ind=-1;
+    for(i=n-2;i>=0;i--)
+    {
+        if(permutation[i]<permutation[i+1])
+        {
+            ind=i;
+            break;
+        }
+    }
+
+    if(ind==-1)
+    {
+        reverse(permutation,0,n-1);
+        return permutation;
+    }
+
+    i=n-1;
+    while(1)
+    {
+        if(permutation[i]>permutation[ind])
+        {
+            swap(permutation,i,ind);
+            break;
+        }
+        i--;
+    }
+
+    reverse(permutation,ind+1,n-1);
+
+    return permutation;*/
+
+
+
+    /*next_permutation(permutation.begin(),permutation.end());
+    return permutation;*/
+}
