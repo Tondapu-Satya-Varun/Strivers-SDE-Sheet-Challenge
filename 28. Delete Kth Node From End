@@ -1,0 +1,51 @@
+class Node
+{
+public:
+    int data;
+    Node *next;
+    Node()
+    {
+        this->data = 0;
+        next = NULL;
+    }
+    Node(int data)
+    {
+        this->data = data; 
+        this->next = NULL;
+    }
+    Node(int data, Node* next)
+    {
+        this->data = data;
+        this->next = next;
+    }
+};
+*/
+
+Node* removeKthNode(Node* head, int k)
+{
+    // Write your code here.
+    int n=0;
+    Node *p=head,*q;
+    while(p!=NULL)
+    {
+        n++;
+        p=p->next;
+    }
+
+    if(k==n)
+    {
+        head=head->next;
+        return head;
+    }
+    p=head;
+    for(int i=0;i<n-k-1;i++)
+    {
+        p=p->next;
+    }
+    
+    q=p->next;
+    p->next=q->next;
+
+    return head;
+
+}
