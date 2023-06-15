@@ -1,0 +1,47 @@
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+            int data;
+            Node *next;
+            Node()
+            {
+                this->data = 0;
+                next = NULL;
+            }
+            Node(int data)
+            {
+                this->data = data;
+                this->next = NULL;
+            }
+            Node(int data, Node* next)
+            {
+                this->data = data;
+                this->next = next;
+            }
+        };
+
+
+*****************************************************************/
+#include<bits/stdc++.h>
+Node *firstNode(Node *head)
+{
+    //    Write your code here.
+    Node *p=head;
+    unordered_map<Node*,int> m;
+    while(p!=NULL)
+    {
+        if(m[p]!=0)
+        {
+            return p;
+        }
+        m[p]++;
+        p=p->next;
+    }
+
+    return NULL;
+
+}
