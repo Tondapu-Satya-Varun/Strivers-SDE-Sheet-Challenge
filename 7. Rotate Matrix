@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+
+
+
+void rotateMatrix(vector<vector<int>> &mat, int n, int m)
+{
+    // Write your code here
+    int si=0,sj=0,it=0,i,j,curr,prev;
+    while(si<n/2)
+    {
+        if(m-2*it<=1||n-2*it<=1)
+        {
+            break;
+        }
+        i=si,j=sj;
+        prev=mat[i][j];
+        j=sj+1;
+        while(j<m-it)
+        {
+            curr=mat[i][j];
+            mat[i][j]=prev;
+            prev=curr;
+            j++;
+        }
+
+        i=it+1;
+        j=m-it-1;
+        while(i<n-it)
+        {
+            curr=mat[i][j];
+            mat[i][j]=prev;
+            prev=curr;
+            i++;
+        }
+
+        i=n-it-1;
+        j=m-it-2;
+        while(j>=it)
+        {
+            curr=mat[i][j];
+            mat[i][j]=prev;
+            prev=curr;
+            j--;
+        }
+
+        j=it;
+        i=n-it-2;
+        while (i>=si) {
+          curr = mat[i][j];
+          mat[i][j] = prev;
+          prev = curr;
+          i--;
+        }
+
+        si++;
+        sj++;
+        it++;
+    }
+
+}
