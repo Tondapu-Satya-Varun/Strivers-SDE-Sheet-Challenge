@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+
+Node *getListAfterReverseOperation(Node *head, int n, int b[]){
+	// Write your code here.
+	int i=0,j=0,k;
+    Node *curr,*ptail,*prev,*next,*tail;
+	prev=NULL;
+	curr=head;
+	ptail=curr;
+
+	while(i<n&&b[i]==0)
+	{
+		i++;
+	}
+
+	while(curr!=NULL&&i<n&&j<b[i])
+	{
+		next=curr->next;
+		curr->next=prev;
+		prev=curr;
+		curr=next;
+		j++;
+	}
+
+	k=i+1;
+
+	if(i==n)
+	{
+		return head;
+	}
+
+	head=prev;
+
+	for(i=k;i<n;i++)
+	{
+		if(curr==NULL)
+		{
+			break;
+		}
+
+		if(b[i]==0)
+		{
+			continue;
+		}
+
+		if(b[i]==1)
+		{
+			ptail->next=curr;
+			ptail=curr;
+			curr=curr->next;
+			continue;
+		}
+
+		j=0;
+		tail=curr;
+		prev=NULL;
+		
+		while(curr!=NULL&&j<b[i])
+	{
+		next=curr->next;
+		curr->next=prev;
+		prev=curr;
+		curr=next;
+		j++;
+	}
+        ptail->next=prev;
+		ptail=tail;
+	}
+
+	if(curr!=NULL)
+	{
+		ptail->next=curr;
+	}
+
+	return head;
+}
