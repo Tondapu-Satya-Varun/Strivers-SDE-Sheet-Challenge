@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+
+vector<vector<int>> pairSum(vector<int> &arr, int s){
+   // Write your code here.
+   sort(arr.begin(),arr.end());
+   unordered_map<int,int> m;
+   vector<vector<int>> ans;
+   int n=arr.size(),i;
+   for(i=0;i<n;i++)
+   {
+      if(m[s-arr[i]]!=0)
+      {
+        for (int j = 0; j < m[s - arr[i]];j++) {
+          vector<int> v;
+          v.push_back(s - arr[i]);
+          v.push_back(arr[i]);
+          ans.push_back(v);
+        }
+         m[arr[i]]++;
+      }
+      else
+      {
+         m[arr[i]]++;
+      }
+   }
+
+   sort(ans.begin(),ans.end());
+   return ans;
+}
