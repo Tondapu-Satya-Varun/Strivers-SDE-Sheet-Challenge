@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+
+//O (n*n)
+string fourSum(vector<int> arr, int target, int n) {
+    // Write your code here.
+    unordered_map<long long ,pair<int,int>> mp;
+
+    for(int i = 0; i < n; i++){
+       for(int j = i+1; j < n; j++){
+           long long sum = arr[i]+arr[j] , find = target-sum;
+           if(mp.find(find) != mp.end()){
+               if(mp[find].first != i && mp[find].second != j){
+                   return "Yes";
+               }
+           }
+           mp[sum] = {i,j};
+       } 
+    }
+
+    return "No";
+}
+
+/*string fourSum(vector<int> arr, int target, int n) {
+    // Write your code here.
+    string ans;
+    sort(arr.begin(),arr.end());
+    for(int i=0;i<n-3;i++)
+    {
+        for(int j=i+1;j<n-2;j++)
+        {
+            int k=j+1,l=n-1;
+            while(k<l)
+            {
+                if(arr[i]+arr[j]+arr[k]+arr[l]==target)
+                {
+                    ans="Yes";
+                    return ans;
+                }
+                else if(arr[i]+arr[j]+arr[k]+arr[l]<target)
+                {
+                    k++;
+                }
+                else
+                {
+                    l--;
+                }
+            }
+        }
+    }
+
+    ans="No";
+    return ans;
+}*/
