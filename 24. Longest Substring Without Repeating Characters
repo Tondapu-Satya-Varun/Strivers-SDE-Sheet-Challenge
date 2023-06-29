@@ -1,0 +1,32 @@
+#include <bits/stdc++.h> 
+int uniqueSubstrings(string input)
+{
+    //Write your code here
+    unordered_map<char,pair<int,int>> m;
+    int i,n=input.size();
+    int ans=0,curans=0,s=0;
+    for(i=0;i<n;i++)
+    {
+        if(m.find(input[i])==m.end()||m[input[i]].first==0)
+        {
+            curans++;
+            m[input[i]].first=1;
+            m[input[i]].second=i;
+            ans=max(ans,curans);
+        }
+        else{
+            int j=s;
+            while (j <= m[input[i]].second) {
+              m[input[j]].first = 0;
+              j++;
+            }
+
+            curans = i - m[input[i]].second;
+            ans = max(ans, curans);
+            s=m[input[i]].second+1;
+            m[input[i]].second=i;
+            m[input[i]].first=1;
+        }
+    }
+    return ans;
+}
