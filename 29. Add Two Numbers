@@ -1,0 +1,120 @@
+/**
+ * Definition of linked list:
+ *
+ * class Node {
+ * public:
+ *      int data;
+ *      Node *next;
+ *      Node() {
+ *          this->data = 0;
+ *          this->next = NULL;
+ *      }
+ *      Node(int data) {
+ *          this->data = data;
+ *          this->next = NULL;
+ *      }
+ *      Node (int data, Node *next) {
+ *          this->data = data;
+ *          this->next = next;
+ *      }
+ * };
+ *
+ *************************************************************************/
+
+Node *addTwoNumbers(Node *num1, Node *num2)
+{
+    // Write your code here.
+    Node* head=new Node();
+    Node *p=num1,*q=num2;
+    int sum=p->data+q->data;
+    int carry=0;
+    if(sum>9)
+    {
+        head->data=sum%10;
+        carry=sum/10;
+    }
+    else{
+        head->data=sum;
+    }
+
+    Node *prev=head;
+    p=p->next;
+    q=q->next;
+    while(p!=NULL&&q!=NULL)
+    {
+        sum=carry+p->data+q->data;
+        Node* curr=new Node();
+        if(sum>9)
+        {
+            curr->data=sum%10;
+            carry=sum/10;
+        }
+        else{
+            curr->data=sum;
+            carry=0;
+        }
+
+        prev->next=curr;
+        p=p->next;
+        q=q->next;
+        prev=curr;
+    }
+
+    if(p==NULL)
+    {
+     while(q!=NULL)
+     {
+        sum=carry+q->data;
+        Node* curr=new Node();
+        if(sum>9)
+        {
+            curr->data=sum%10;
+            carry=sum/10;
+        }
+        else{
+            curr->data=sum;
+            carry=0;
+        }
+
+        prev->next=curr;
+        q=q->next;
+        prev=curr;
+     }
+     if(carry!=0)
+     {
+         Node* last=new Node();
+         last->data=carry;
+         prev->next=last;
+     }
+    }
+    else{
+        while(p!=NULL)
+     {
+        sum=carry+p->data;
+        Node* curr=new Node();
+        if(sum>9)
+        {
+            curr->data=sum%10;
+            carry=sum/10;
+        }
+        else{
+            curr->data=sum;
+            carry=0;
+        }
+
+        prev->next=curr;
+        p=p->next;
+        prev=curr;
+     }
+
+     if(carry!=0)
+     {
+         Node* last=new Node();
+         last->data=carry;
+         prev->next=last;
+     }
+    }
+
+    return head;
+    
+}
