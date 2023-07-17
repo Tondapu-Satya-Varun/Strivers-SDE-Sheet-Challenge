@@ -1,0 +1,29 @@
+int maximumMeetings(vector<int> &start, vector<int> &end)
+{
+    // Write your code here.
+    //GREEDY APPROACH, CONDUCT THE MEETINGS THAT END EARLIER SO THAT MORE 
+    //MEETINGS CAN BE CONDUCTED. SORT BASED ON END TIME
+    vector<vector<int>> v;
+    int i,n=start.size();
+    for(i=0;i<n;i++)
+    {
+        vector<int> x;
+        x.push_back(end[i]);
+        x.push_back(start[i]);
+        v.push_back(x);
+    }
+
+    sort(v.begin(),v.end());
+    int ans=1,last=v[0][0];
+
+    for(i=1;i<n;i++)
+    {
+        if(v[i][1]>last)
+        {
+            ans++;
+            last=v[i][0];
+        }
+    }
+
+    return ans;
+}
